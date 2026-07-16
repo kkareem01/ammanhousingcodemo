@@ -170,9 +170,11 @@
     animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
   body[data-device="desktop"] .frame-wrap.desktop { display: flex; flex: 1; max-width: 1250px; }
-  body[data-device="mobile"] .frame-wrap.mobile { display: flex; width: min(400px, 92vw); }
+  body[data-device="mobile"] .frame-wrap.mobile { display: flex; }
   body[data-device="both"] .frame-wrap.desktop { display: flex; flex: 1; max-width: 950px; }
-  body[data-device="both"] .frame-wrap.mobile { display: flex; width: 330px; }
+  body[data-device="both"] .frame-wrap.mobile { display: flex; }
+  /* Phone width derives from height via aspect-ratio; center so it doesn't stretch */
+  .frame-wrap.mobile { align-items: center; }
   @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
   /* Browser chrome */
@@ -224,6 +226,8 @@
   .phone {
     flex: 1;
     min-height: 0;
+    /* iPhone 13 proportions: 390x844 screen + 12px bezel = 414x868 */
+    aspect-ratio: 414 / 868;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -380,7 +384,8 @@
     main { padding: 14px 16px; flex-direction: column; align-items: center; }
     body[data-device] .frame-wrap.desktop,
     body[data-device] .frame-wrap.mobile { width: 100%; max-width: 640px; }
-    .browser, .phone { height: 72vh; }
+    .browser { height: 72vh; }
+    .phone { flex: none; height: auto; width: min(88vw, 375px); margin: 0 auto; }
     .arrow.prev { left: 6px; }
     .arrow.next { right: 6px; }
     header { padding: 14px 16px 10px; }
