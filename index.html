@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Mohammad &amp; Ammar Housing — Website Preview</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --charcoal: #0e0e0e;
+    --charcoal-soft: #161615;
+    --charcoal-card: #1a1a18;
+    --line: #2a2a26;
+    --ivory: #f2efe9;
+    --ivory-dim: #b8b3a9;
+    --gold: #c9a24b;
+    --gold-soft: #dabb6e;
+    --gold-dim: #8a7136;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--charcoal);
+    color: var(--ivory);
+    font-family: "IBM Plex Sans Arabic", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(900px 400px at 75% -10%, rgba(201, 162, 75, 0.09), transparent 70%),
+      radial-gradient(700px 500px at 10% 110%, rgba(201, 162, 75, 0.05), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    position: relative;
+    z-index: 2;
+    padding: 18px 28px 14px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .brand { display: flex; flex-direction: column; gap: 2px; min-width: 250px; }
+  .brand h1 {
+    font-family: "Reem Kufi", sans-serif;
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    color: var(--ivory);
+    white-space: nowrap;
+  }
+  .brand h1 em { font-style: normal; color: var(--gold-soft); }
+  .brand span {
+    font-size: 11.5px;
+    color: var(--ivory-dim);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+  .hairline {
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent 65%);
+    margin: 0 28px;
+    opacity: 0.7;
+  }
+
+  .spacer { flex: 1; }
+
+  /* ---------- Segmented controls ---------- */
+  .seg {
+    display: inline-flex;
+    background: var(--charcoal-card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .seg button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--ivory-dim);
+    font-family: inherit;
+    font-size: 12.5px;
+    padding: 7px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+  }
+  .seg button:hover { color: var(--ivory); }
+  .seg button.active {
+    background: linear-gradient(180deg, rgba(201,162,75,0.22), rgba(201,162,75,0.10));
+    color: var(--gold-soft);
+    box-shadow: inset 0 0 0 1px rgba(201, 162, 75, 0.45);
+  }
+  .seg button svg { width: 14px; height: 14px; flex: none; }
+
+  /* ---------- Page tabs ---------- */
+  nav.tabs {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px 4px;
+    flex-wrap: wrap;
+  }
+  .tab {
+    appearance: none;
+    border: 1px solid var(--line);
+    background: var(--charcoal-soft);
+    color: var(--ivory-dim);
+    font-family: inherit;
+    border-radius: 12px;
+    padding: 9px 18px 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 0.25s, color 0.25s, background 0.25s, transform 0.15s;
+  }
+  .tab:hover { color: var(--ivory); transform: translateY(-1px); }
+  .tab .en { display: block; font-size: 13px; font-weight: 500; }
+  .tab .ar {
+    display: block;
+    font-family: "Reem Kufi", sans-serif;
+    font-size: 11px;
+    color: var(--gold-dim);
+    margin-top: 1px;
+    transition: color 0.25s;
+  }
+  .tab.active {
+    border-color: rgba(201, 162, 75, 0.55);
+    background: linear-gradient(180deg, rgba(201,162,75,0.14), rgba(201,162,75,0.04));
+    color: var(--ivory);
+  }
+  .tab.active .ar { color: var(--gold-soft); }
+
+  /* ---------- Stage ---------- */
+  main {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 26px;
+    padding: 18px 74px 14px;
+  }
+
+  .frame-wrap {
+    display: none;
+    flex-direction: column;
+    min-height: 0;
+    animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  body[data-device="desktop"] .frame-wrap.desktop { display: flex; flex: 1; max-width: 1250px; }
+  body[data-device="mobile"] .frame-wrap.mobile { display: flex; width: min(400px, 92vw); }
+  body[data-device="both"] .frame-wrap.desktop { display: flex; flex: 1; max-width: 950px; }
+  body[data-device="both"] .frame-wrap.mobile { display: flex; width: 330px; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* Browser chrome */
+  .browser {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--charcoal-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(201, 162, 75, 0.06);
+  }
+  .browser-bar {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 16px;
+    background: #131311;
+    border-bottom: 1px solid var(--line);
+  }
+  .dots { display: flex; gap: 7px; }
+  .dots i { width: 11px; height: 11px; border-radius: 50%; }
+  .dots i:nth-child(1) { background: #ff5f57; }
+  .dots i:nth-child(2) { background: #febc2e; }
+  .dots i:nth-child(3) { background: #28c840; }
+  .urlbar {
+    flex: 1;
+    max-width: 520px;
+    margin: 0 auto;
+    background: var(--charcoal);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--ivory-dim);
+    font-size: 12px;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+  }
+  .urlbar svg { width: 11px; height: 11px; flex: none; color: var(--gold-dim); }
+  .urlbar span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; direction: ltr; }
+  .urlbar b { color: var(--ivory); font-weight: 400; }
+
+  /* Phone chrome */
+  .phone {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: #000;
+    border: 1px solid #3a3a36;
+    border-radius: 46px;
+    padding: 12px;
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(201, 162, 75, 0.06);
+  }
+  .phone::after {
+    content: "";
+    position: absolute;
+    top: 17px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22%;
+    height: 13px;
+    background: #000;
+    border-radius: 999px;
+    z-index: 3;
+    box-shadow: inset 0 0 0 1px #1c1c1a;
+  }
+  .phone .screen { border-radius: 34px; }
+
+  /* Scrollable screen */
+  .screen {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: var(--charcoal);
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-dim) transparent;
+  }
+  .screen::-webkit-scrollbar { width: 6px; }
+  .screen::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 99px; }
+  .screen img {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+  .screen.loading img { opacity: 0.15; }
+  .screen .spin {
+    position: absolute;
+    top: 40vh;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: -15px;
+    border: 2px solid rgba(201, 162, 75, 0.25);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .screen.loading .spin { opacity: 1; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .frame-label {
+    flex: none;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    padding-top: 10px;
+  }
+
+  /* ---------- Stage arrows ---------- */
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: rgba(22, 22, 21, 0.85);
+    backdrop-filter: blur(6px);
+    color: var(--ivory-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s, transform 0.15s;
+  }
+  .arrow:hover { color: var(--gold-soft); border-color: var(--gold-dim); transform: translateY(-50%) scale(1.06); }
+  .arrow svg { width: 18px; height: 18px; }
+  .arrow.prev { left: 16px; }
+  .arrow.next { right: 16px; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 10px 28px 16px;
+    flex-wrap: wrap;
+  }
+  .dots-nav { display: flex; gap: 8px; }
+  .dots-nav button {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 0;
+    background: var(--line);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s, transform 0.25s;
+  }
+  .dots-nav button.active { background: var(--gold); transform: scale(1.35); }
+  .counter { font-size: 12px; color: var(--ivory-dim); letter-spacing: 1px; }
+  .counter b { color: var(--gold-soft); font-weight: 500; }
+  .hint { font-size: 11.5px; color: #6d685f; }
+  .hint kbd {
+    font-family: inherit;
+    border: 1px solid var(--line);
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: 10.5px;
+    color: var(--ivory-dim);
+    background: var(--charcoal-soft);
+  }
+  .autoscroll {
+    appearance: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--line);
+    background: var(--charcoal-card);
+    color: var(--ivory-dim);
+    font-family: inherit;
+    font-size: 12px;
+    border-radius: 999px;
+    padding: 7px 16px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .autoscroll:hover { color: var(--ivory); }
+  .autoscroll.on { color: var(--gold-soft); border-color: rgba(201, 162, 75, 0.5); }
+  .autoscroll svg { width: 12px; height: 12px; }
+
+  @media (max-width: 900px) {
+    body { overflow: auto; }
+    main { padding: 14px 16px; flex-direction: column; align-items: center; }
+    body[data-device] .frame-wrap.desktop,
+    body[data-device] .frame-wrap.mobile { width: 100%; max-width: 640px; }
+    .browser, .phone { height: 72vh; }
+    .arrow.prev { left: 6px; }
+    .arrow.next { right: 6px; }
+    header { padding: 14px 16px 10px; }
+    .hairline { margin: 0 16px; }
+    .hint { display: none; }
+  }
+</style>
+</head>
+<body data-device="desktop">
+
+<header>
+  <div class="brand">
+    <h1>Mohammad &amp; Ammar <em>Housing</em></h1>
+    <span>Website Preview · عرض الموقع</span>
+  </div>
+  <div class="spacer"></div>
+
+  <div class="seg" id="deviceSeg" role="group" aria-label="Device">
+    <button data-device="desktop" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+      Desktop
+    </button>
+    <button data-device="mobile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+      Mobile
+    </button>
+    <button data-device="both">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="13" height="11" rx="1.5"/><rect x="16" y="8" width="6" height="12" rx="1.5"/></svg>
+      Both
+    </button>
+  </div>
+
+  <div class="seg" id="langSeg" role="group" aria-label="Language">
+    <button data-lang="ar" class="active">العربية</button>
+    <button data-lang="en">English</button>
+  </div>
+</header>
+<div class="hairline"></div>
+
+<nav class="tabs" id="tabs"></nav>
+
+<main id="stage">
+  <button class="arrow prev" id="prevBtn" aria-label="Previous page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+  </button>
+
+  <div class="frame-wrap desktop">
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <div class="urlbar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+          <span id="urlDesktop"></span>
+        </div>
+      </div>
+      <div class="screen" id="screenDesktop"><img id="imgDesktop" alt="Desktop screenshot" /><div class="spin"></div></div>
+    </div>
+    <div class="frame-label">Desktop · 1440px</div>
+  </div>
+
+  <div class="frame-wrap mobile">
+    <div class="phone">
+      <div class="screen" id="screenMobile"><img id="imgMobile" alt="Mobile screenshot" /><div class="spin"></div></div>
+    </div>
+    <div class="frame-label">iPhone · 390px</div>
+  </div>
+
+  <button class="arrow next" id="nextBtn" aria-label="Next page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+  </button>
+</main>
+
+<footer>
+  <div class="dots-nav" id="dotsNav"></div>
+  <div class="counter"><b id="pageNum">1</b> / <span id="pageTotal"></span></div>
+  <button class="autoscroll" id="autoBtn">
+    <svg id="autoIconPlay" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l12-7.5z"/></svg>
+    <svg id="autoIconStop" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="6" width="12" height="12" rx="1.5"/></svg>
+    <span id="autoLabel">Auto-scroll tour</span>
+  </button>
+  <div class="spacer"></div>
+  <div class="hint"><kbd>←</kbd> <kbd>→</kbd> pages &nbsp; <kbd>D</kbd> device &nbsp; <kbd>L</kbd> language &nbsp; <kbd>Space</kbd> tour</div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var PAGES = [
+    { file: "01-home", en: "Home", ar: "الرئيسية", path: { ar: "/", en: "/en" } },
+    { file: "02-about", en: "About", ar: "من نحن", path: { ar: "/about", en: "/en/about" } },
+    { file: "03-projects", en: "Projects", ar: "مشاريعنا", path: { ar: "/projects", en: "/en/projects" } },
+    { file: "04-project-detail", en: "Project Detail", ar: "تفاصيل المشروع", path: { ar: "/projects/building-1-airport-road", en: "/en/projects/building-1-airport-road" } },
+    { file: "05-contact", en: "Contact", ar: "تواصل معنا", path: { ar: "/contact", en: "/en/contact" } }
+  ];
+  var DOMAIN = "ammanhousing.jo";
+
+  var state = { page: 0, lang: "ar", device: "desktop" };
+
+  var els = {
+    tabs: document.getElementById("tabs"),
+    dotsNav: document.getElementById("dotsNav"),
+    pageNum: document.getElementById("pageNum"),
+    pageTotal: document.getElementById("pageTotal"),
+    urlDesktop: document.getElementById("urlDesktop"),
+    imgDesktop: document.getElementById("imgDesktop"),
+    imgMobile: document.getElementById("imgMobile"),
+    screenDesktop: document.getElementById("screenDesktop"),
+    screenMobile: document.getElementById("screenMobile"),
+    autoBtn: document.getElementById("autoBtn"),
+    autoLabel: document.getElementById("autoLabel"),
+    autoIconPlay: document.getElementById("autoIconPlay"),
+    autoIconStop: document.getElementById("autoIconStop")
+  };
+
+  function srcFor(device, page, lang) {
+    var suffix = lang === "ar" ? "arabic" : "english";
+    return "screenshots/" + device + "/" + PAGES[page].file + "-" + suffix + ".png";
+  }
+
+  /* ----- build tabs & dots ----- */
+  PAGES.forEach(function (p, i) {
+    var tab = document.createElement("button");
+    tab.className = "tab";
+    tab.innerHTML = '<span class="en">' + p.en + '</span><span class="ar">' + p.ar + "</span>";
+    tab.addEventListener("click", function () { setPage(i); });
+    els.tabs.appendChild(tab);
+
+    var dot = document.createElement("button");
+    dot.setAttribute("aria-label", p.en);
+    dot.addEventListener("click", function () { setPage(i); });
+    els.dotsNav.appendChild(dot);
+  });
+  els.pageTotal.textContent = PAGES.length;
+
+  /* ----- image loading with spinner ----- */
+  function loadInto(img, screen, src) {
+    if (img.getAttribute("src") === src) return;
+    screen.classList.add("loading");
+    img.onload = function () { screen.classList.remove("loading"); };
+    img.onerror = function () { screen.classList.remove("loading"); };
+    img.src = src;
+    screen.scrollTop = 0;
+  }
+
+  function preloadNeighbors() {
+    [-1, 1].forEach(function (d) {
+      var i = (state.page + d + PAGES.length) % PAGES.length;
+      ["desktop", "mobile"].forEach(function (dev) {
+        var pre = new Image();
+        pre.src = srcFor(dev, i, state.lang);
+      });
+    });
+  }
+
+  /* ----- render ----- */
+  function render() {
+    document.body.setAttribute("data-device", state.device);
+
+    var tabs = els.tabs.children, dots = els.dotsNav.children;
+    for (var i = 0; i < PAGES.length; i++) {
+      tabs[i].classList.toggle("active", i === state.page);
+      dots[i].classList.toggle("active", i === state.page);
+    }
+    document.querySelectorAll("#deviceSeg button").forEach(function (b) {
+      b.classList.toggle("active", b.dataset.device === state.device);
+    });
+    document.querySelectorAll("#langSeg button").forEach(function (b) {
+      b.classList.toggle("active", b.dataset.lang === state.lang);
+    });
+
+    els.pageNum.textContent = state.page + 1;
+    els.urlDesktop.innerHTML = "<b>" + DOMAIN + "</b>" + PAGES[state.page].path[state.lang];
+
+    if (state.device !== "mobile") loadInto(els.imgDesktop, els.screenDesktop, srcFor("desktop", state.page, state.lang));
+    if (state.device !== "desktop") loadInto(els.imgMobile, els.screenMobile, srcFor("mobile", state.page, state.lang));
+
+    preloadNeighbors();
+  }
+
+  function setPage(i) {
+    stopTour();
+    state.page = (i + PAGES.length) % PAGES.length;
+    render();
+  }
+
+  /* ----- controls ----- */
+  document.querySelectorAll("#deviceSeg button").forEach(function (b) {
+    b.addEventListener("click", function () { stopTour(); state.device = b.dataset.device; render(); });
+  });
+  document.querySelectorAll("#langSeg button").forEach(function (b) {
+    b.addEventListener("click", function () { stopTour(); state.lang = b.dataset.lang; render(); });
+  });
+  document.getElementById("prevBtn").addEventListener("click", function () { setPage(state.page - 1); });
+  document.getElementById("nextBtn").addEventListener("click", function () { setPage(state.page + 1); });
+
+  /* ----- auto-scroll tour ----- */
+  var tour = { running: false, raf: 0 };
+  var SPEED = 260; /* px per second */
+
+  function visibleScreens() {
+    var out = [];
+    if (state.device !== "mobile") out.push(els.screenDesktop);
+    if (state.device !== "desktop") out.push(els.screenMobile);
+    return out;
+  }
+  function setTourUI(on) {
+    els.autoBtn.classList.toggle("on", on);
+    els.autoIconPlay.style.display = on ? "none" : "";
+    els.autoIconStop.style.display = on ? "" : "none";
+    els.autoLabel.textContent = on ? "Stop tour" : "Auto-scroll tour";
+  }
+  function stopTour() {
+    if (!tour.running) return;
+    tour.running = false;
+    cancelAnimationFrame(tour.raf);
+    setTourUI(false);
+  }
+  function startTour() {
+    tour.running = true;
+    setTourUI(true);
+    var last = performance.now();
+    function step(now) {
+      if (!tour.running) return;
+      var dt = (now - last) / 1000;
+      last = now;
+      var allDone = true;
+      visibleScreens().forEach(function (s) {
+        var max = s.scrollHeight - s.clientHeight;
+        if (s.scrollTop < max - 1) {
+          s.scrollTop = Math.min(max, s.scrollTop + SPEED * dt);
+          allDone = false;
+        }
+      });
+      if (allDone) { stopTour(); return; }
+      tour.raf = requestAnimationFrame(step);
+    }
+    tour.raf = requestAnimationFrame(step);
+  }
+  els.autoBtn.addEventListener("click", function () { tour.running ? stopTour() : startTour(); });
+  [els.screenDesktop, els.screenMobile].forEach(function (s) {
+    s.addEventListener("wheel", stopTour, { passive: true });
+    s.addEventListener("touchstart", stopTour, { passive: true });
+  });
+
+  /* ----- keyboard ----- */
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") setPage(state.page + 1);
+    else if (e.key === "ArrowLeft") setPage(state.page - 1);
+    else if (e.key === "d" || e.key === "D") {
+      stopTour();
+      state.device = state.device === "desktop" ? "mobile" : state.device === "mobile" ? "both" : "desktop";
+      render();
+    } else if (e.key === "l" || e.key === "L") {
+      stopTour();
+      state.lang = state.lang === "ar" ? "en" : "ar";
+      render();
+    } else if (e.key === " ") {
+      e.preventDefault();
+      tour.running ? stopTour() : startTour();
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
