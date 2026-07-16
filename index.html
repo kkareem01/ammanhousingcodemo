@@ -161,6 +161,8 @@
     justify-content: center;
     gap: 26px;
     padding: 18px 74px 14px;
+    /* Size container so frame widths can derive from stage height (cqh) */
+    container-type: size;
   }
 
   .frame-wrap {
@@ -169,18 +171,32 @@
     min-height: 0;
     animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
-  body[data-device="desktop"] .frame-wrap.desktop { display: flex; flex: 1; max-width: 1250px; }
+  /* Desktop frame width derives from stage height so the 16:10 screen fills
+     the stage vertically without overflowing; shrinks if the window is narrow */
+  body[data-device="desktop"] .frame-wrap.desktop {
+    display: flex;
+    flex: 0 1 auto;
+    justify-content: center;
+    width: calc((100cqh - 80px) * 1.6);
+    max-width: min(100%, 1250px);
+  }
   body[data-device="mobile"] .frame-wrap.mobile { display: flex; }
-  body[data-device="both"] .frame-wrap.desktop { display: flex; flex: 1; max-width: 950px; }
+  body[data-device="both"] .frame-wrap.desktop {
+    display: flex;
+    flex: 0 1 auto;
+    justify-content: center;
+    width: calc((100cqh - 80px) * 1.6);
+    max-width: min(100%, 950px);
+  }
   body[data-device="both"] .frame-wrap.mobile { display: flex; }
   /* Phone width derives from height via aspect-ratio; center so it doesn't stretch */
   .frame-wrap.mobile { align-items: center; }
   @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
-  /* Browser chrome */
+  /* Browser chrome — height follows from the screen's locked aspect ratio */
   .browser {
-    flex: 1;
-    min-height: 0;
+    flex: none;
+    width: 100%;
     display: flex;
     flex-direction: column;
     background: var(--charcoal-card);
@@ -221,6 +237,8 @@
   .urlbar svg { width: 11px; height: 11px; flex: none; color: var(--gold-dim); }
   .urlbar span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; direction: ltr; }
   .urlbar b { color: var(--ivory); font-weight: 400; }
+  /* Real desktop viewport proportions — matches the 1440x900 capture */
+  .browser .screen { flex: none; aspect-ratio: 1440 / 900; }
 
   /* Phone chrome */
   .phone {
@@ -384,10 +402,11 @@
        so frames stack in flow and the footer lands below them. */
     html, body { height: auto; }
     body { overflow: auto; min-height: 100vh; }
-    main { flex: none; padding: 14px 16px 18px; flex-direction: column; align-items: center; gap: 24px; }
+    /* main is content-sized here, so it can't be a size container */
+    main { flex: none; padding: 14px 16px 18px; flex-direction: column; align-items: center; gap: 24px; container-type: normal; }
     body[data-device] .frame-wrap.desktop,
     body[data-device] .frame-wrap.mobile { flex: none; width: 100%; max-width: 640px; }
-    .browser { flex: none; height: 74vh; }
+    .browser { flex: none; height: auto; }
     .phone { flex: none; height: auto; width: min(88vw, 375px); margin: 0 auto; }
     .arrow {
       position: fixed;
