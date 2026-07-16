@@ -380,16 +380,27 @@
   .autoscroll svg { width: 12px; height: 12px; }
 
   @media (max-width: 900px) {
-    body { overflow: auto; }
-    main { padding: 14px 16px; flex-direction: column; align-items: center; }
+    /* Release the locked-viewport layout: let the document grow and scroll,
+       so frames stack in flow and the footer lands below them. */
+    html, body { height: auto; }
+    body { overflow: auto; min-height: 100vh; }
+    main { flex: none; padding: 14px 16px 18px; flex-direction: column; align-items: center; gap: 24px; }
     body[data-device] .frame-wrap.desktop,
-    body[data-device] .frame-wrap.mobile { width: 100%; max-width: 640px; }
-    .browser { height: 72vh; }
+    body[data-device] .frame-wrap.mobile { flex: none; width: 100%; max-width: 640px; }
+    .browser { flex: none; height: 74vh; }
     .phone { flex: none; height: auto; width: min(88vw, 375px); margin: 0 auto; }
+    .arrow {
+      position: fixed;
+      top: 50%;
+      width: 38px;
+      height: 38px;
+      z-index: 20;
+    }
     .arrow.prev { left: 6px; }
     .arrow.next { right: 6px; }
     header { padding: 14px 16px 10px; }
     .hairline { margin: 0 16px; }
+    footer { justify-content: center; }
     .hint { display: none; }
   }
 </style>
