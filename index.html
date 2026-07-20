@@ -17,9 +17,9 @@
     --line: #2a2a26;
     --ivory: #f2efe9;
     --ivory-dim: #b8b3a9;
-    --gold: #c9a24b;
-    --gold-soft: #dabb6e;
-    --gold-dim: #8a7136;
+    --gold: #c19274;
+    --gold-soft: #d8b294;
+    --gold-dim: #85553a;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { height: 100%; }
@@ -37,8 +37,8 @@
     position: fixed;
     inset: 0;
     background:
-      radial-gradient(900px 400px at 75% -10%, rgba(201, 162, 75, 0.09), transparent 70%),
-      radial-gradient(700px 500px at 10% 110%, rgba(201, 162, 75, 0.05), transparent 70%);
+      radial-gradient(900px 400px at 75% -10%, rgba(193, 146, 116, 0.09), transparent 70%),
+      radial-gradient(700px 500px at 10% 110%, rgba(193, 146, 116, 0.05), transparent 70%);
     pointer-events: none;
     z-index: 0;
   }
@@ -105,9 +105,9 @@
   }
   .seg button:hover { color: var(--ivory); }
   .seg button.active {
-    background: linear-gradient(180deg, rgba(201,162,75,0.22), rgba(201,162,75,0.10));
+    background: linear-gradient(180deg, rgba(193,146,116,0.22), rgba(193,146,116,0.10));
     color: var(--gold-soft);
-    box-shadow: inset 0 0 0 1px rgba(201, 162, 75, 0.45);
+    box-shadow: inset 0 0 0 1px rgba(193, 146, 116, 0.45);
   }
   .seg button svg { width: 14px; height: 14px; flex: none; }
 
@@ -144,8 +144,8 @@
     transition: color 0.25s;
   }
   .tab.active {
-    border-color: rgba(201, 162, 75, 0.55);
-    background: linear-gradient(180deg, rgba(201,162,75,0.14), rgba(201,162,75,0.04));
+    border-color: rgba(193, 146, 116, 0.55);
+    background: linear-gradient(180deg, rgba(193,146,116,0.14), rgba(193,146,116,0.04));
     color: var(--ivory);
   }
   .tab.active .ar { color: var(--gold-soft); }
@@ -203,7 +203,7 @@
     border: 1px solid var(--line);
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(201, 162, 75, 0.06);
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(193, 146, 116, 0.06);
   }
   .browser-bar {
     flex: none;
@@ -253,7 +253,7 @@
     border: 1px solid #3a3a36;
     border-radius: 46px;
     padding: 12px;
-    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(201, 162, 75, 0.06);
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(193, 146, 116, 0.06);
   }
   .phone::after {
     content: "";
@@ -276,7 +276,7 @@
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    background: var(--charcoal);
+    background: #ffffff;
     position: relative;
     scrollbar-width: thin;
     scrollbar-color: var(--gold-dim) transparent;
@@ -298,7 +298,7 @@
     width: 30px;
     height: 30px;
     margin-left: -15px;
-    border: 2px solid rgba(201, 162, 75, 0.25);
+    border: 2px solid rgba(193, 146, 116, 0.25);
     border-top-color: var(--gold);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
@@ -394,7 +394,7 @@
     transition: color 0.2s, border-color 0.2s;
   }
   .autoscroll:hover { color: var(--ivory); }
-  .autoscroll.on { color: var(--gold-soft); border-color: rgba(201, 162, 75, 0.5); }
+  .autoscroll.on { color: var(--gold-soft); border-color: rgba(193, 146, 116, 0.5); }
   .autoscroll svg { width: 12px; height: 12px; }
 
   @media (max-width: 900px) {
